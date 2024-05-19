@@ -1,0 +1,44 @@
+﻿@using SportsBar.Components.Layout.NavItems
+@rendermode @(RenderMode.InteractiveServer)
+@* NavMenu.razor *@
+<div class="navbar">
+    <div class="logo">
+        <img src="./Images/SHOWMANS-ICON.svg" alt="Logo" />
+    </div>
+    <label for="nav-toggle" class="@dynamicClass" @onclick="ToggleClass">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+    <div class="navbar-left @showHide">
+        <NavLinkItem class="nav-items" href="/menu">MENU</NavLinkItem>
+        <NavLinkItem class="nav-items" href="/events">EVENTS</NavLinkItem>
+        <NavLinkItem class="nav-items" href="/reservations">RESERVATIONS</NavLinkItem>
+    </div>
+    <div class="navbar-right @showHide">
+        <NavLinkItem class="nav-items" href="/contact">CONTACT US</NavLinkItem>
+        <NavLinkItem class="nav-items" href="/gallery">GALLERY</NavLinkItem>
+        <NavLinkItem class="nav-items" href="/videos">VIDEOS</NavLinkItem>
+    </div>
+    <div class="@showHide @showHideLivestreamNavLinkItem">
+        <span class="blinking-dot"></span>
+        <NavLinkItem class="nav-items links-right livestream" href="/livestream">LIVESTREAM</NavLinkItem>
+    </div>
+</div>
+
+@code {
+    private bool isOpen = false;
+
+    private string dynamicClass => isOpen ? "hamburger-open" : "hamburger-closed";
+
+    private string showHide => isOpen ? "show-menu" : "hide-menu";
+
+    public bool hasActiveLiveStream = false; // This will come from backend through signalr(?) and use youtubes api
+
+    private string showHideLivestreamNavLinkItem => hasActiveLiveStream ? "showLiveStreamNavLink" : "hideLiveStreamNavLink";
+
+    private void ToggleClass()
+    {
+        isOpen = !isOpen;
+    }
+}

@@ -1,0 +1,8 @@
+﻿.carousel-item img {
+    margin: 0 auto;
+    width: auto;
+    max-height: calc(100vh - 178px);
+    object-fit: cover;
+    overflow: hidden;
+    position: relative;
+}

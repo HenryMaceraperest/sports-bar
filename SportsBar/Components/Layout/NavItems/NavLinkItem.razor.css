@@ -1,0 +1,40 @@
+﻿div {
+    color: white;
+    text-decoration: none;
+    margin: 5px 10px;
+    position: relative;
+}
+
+div:hover {
+    cursor: pointer;
+}
+
+div::after {
+    content: "";
+    margin: auto;
+    height: 3px;
+    width: 100%;
+    top: 100%;
+    background: transparent;
+    transition: transform 0.3s;
+    position: absolute;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+}
+
+div:hover::after, div.active::after {
+    transform: scaleX(1);
+    background: white;
+}
+
+@media (max-width: 930px) {
+    .line::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-bottom: 1px white dotted;
+    }
+    }

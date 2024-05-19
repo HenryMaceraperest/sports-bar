@@ -1,0 +1,33 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager NavManager
+
+<div class="@CSSClass" @onclick="NavigatePage">
+    @ChildContent    
+</div>
+
+@code {
+    [Parameter]
+    public string Href { get; set; }
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public string Class { get; set; }
+    [Parameter]
+    public string ActiveClass { get; set; } = "active";
+    [Parameter]
+    public string DefaultClass { get; set; } = "nav-item";
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+    private bool IsActive => NavManager.Uri.EndsWith(Href);
+    private string CSSClass => IsActive ? $"{DefaultClass} {ActiveClass}" : DefaultClass;
+
+    private async void NavigatePage()
+    {
+        if (Href != null && Href != "")
+        {
+            NavManager.NavigateTo(Href);
+        }
+        await OnClick.InvokeAsync(null);
+    }
+}
