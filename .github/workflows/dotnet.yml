@@ -9,6 +9,12 @@ on:
   pull_request:
     branches: [ "master" ]
 
+permissions:
+  contents: read
+  issues: read
+  checks: write
+  pull-requests: write
+
 jobs:
   build:
 
@@ -32,3 +38,4 @@ jobs:
       with:
         files: |
           ./SportsBar.UnitTests/TestResults/test-results.trx
+      
