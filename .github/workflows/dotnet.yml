@@ -25,10 +25,10 @@ jobs:
     - name: Build
       run: dotnet build ./SportsBar/SportsBar.sln --no-restore
     - name: Test
-      run: dotnet test ./SportsBar.UnitTests/SportsBar.UnitTests.csproj --no-build --verbosity normal --logger "trx;LogFileName=UnitTestResults.trx"
+      run: dotnet test ./SportsBar.UnitTests/SportsBar.UnitTests.csproj --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action/windows@v2
       if: always()
       with:
         files: |
-          ./SportsBar.UnitTests/test-results/UnitTestResults.trx
+          ./SportsBar.UnitTests/TestResults/test-results.trx
