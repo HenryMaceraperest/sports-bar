@@ -1,6 +1,7 @@
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     min-width: 270px;
+    min-height: 400px;
     background-color: darkgrey;
 }
 
